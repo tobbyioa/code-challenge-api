@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: codechallenge-api
+spec:
+  selector:
+    matchLabels:
+      app: codechallenge-api-1.0
+  template:
+    metadata:
+      labels:
+        app: codechallenge-api-1.0
+    spec:
+      containers:
+      - name: codechallenge-api
+        image: codechallenge-api
+        imagePullPolicy: Never
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+
+
