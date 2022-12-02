@@ -1,5 +1,5 @@
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
-WORKDIR /CodeChallenge
+WORKDIR /code-challenge-api
 
 # Copy everything
 COPY . ./
@@ -10,6 +10,6 @@ RUN dotnet publish -c Release -o out
 
 # Build runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:6.0
-WORKDIR /CodeChallenge
-COPY --from=build-env /CodeChallenge/out .
-ENTRYPOINT ["dotnet", "CodeChallenge.dll"]
+WORKDIR /code-challenge-api
+COPY --from=build-env /code-challenge-api/out .
+ENTRYPOINT ["dotnet", "code-challenge-api.dll"]
